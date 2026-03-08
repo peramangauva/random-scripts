@@ -1,7 +1,10 @@
+local id = 'peramangauva_ChatScript'
 do -- cleanup
-    local cleanup = getgenv().cleanup
-    if cleanup then
-        cleanup()
+    local cleanupTable = getgenv().cleanupTable
+    for _, cleanup in pairs(cleanupTable) do
+        if cleanup.id == id then
+            cleanup.func()
+        end
     end
 end
 
@@ -249,14 +252,23 @@ end
 
 
 do -- cleanup
-    getgenv().cleanup = function()
-        for _, Connection in ipairs(Connect.Raw) do
-            Connection:Disconnect()
-        end
-        if MyStack then
-            MyStack:Clear()
+    for idx, cleanup in pairs(getgenv().cleanupTable) do
+        if cleanup.id == id then
+            table.remove(cleanup, idx)
+            break
         end
     end
+    table.insert(getgenv().cleanupTable, {
+        id = id,
+        func = function()
+            for _, Connection in ipairs(Connect.Raw) do
+                Connection:Disconnect()
+            end
+            if MyStack then
+                MyStack:Clear()
+            end
+        end
+    })
 end
 
 return {
@@ -266,3 +278,4 @@ return {
     GetPlayer = GetPlayer,
     Chat = SystemMessage
 }
+
