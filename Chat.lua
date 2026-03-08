@@ -54,6 +54,7 @@ do -- utility functions
     end
 
     function GetPlayer(name)
+        if typeof(name) == 'Instance' then return name end
         if type(name) ~= "string" then return nil end
         local searchName = string.lower(name)
 
