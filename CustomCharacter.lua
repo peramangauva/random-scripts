@@ -1,4 +1,4 @@
-local id = 'CustomCharacterBuilder_Module'
+local id = 'peramangauva_CustomCharacter'
 do -- cleanup
     local cleanupTable = getgenv().cleanupTable
     if not cleanupTable then
