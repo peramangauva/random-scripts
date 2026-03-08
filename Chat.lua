@@ -240,9 +240,9 @@ do -- connections
         Connect(TextBox.FocusLost, function(enterPressed)
             OnFocusLost(enterPressed, TextBox)
         end)
-        SystemMessage("its on nigga")
+        SystemMessage("its on")
     else
-        warn("Could not find ExperienceChat TextBox. This game might use LegacyChat or a custom system.")
+        warn("cant get the chat buddy")
     end
 end
 
