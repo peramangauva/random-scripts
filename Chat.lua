@@ -260,7 +260,7 @@ end
 
 return {
     NewCommand = function(name, Callback)
-        Commands[name] = Callback
+        CommandRegistry[name:lower()] = Callback
     end,
     GetPlayer = GetPlayer,
     Chat = SystemMessage
